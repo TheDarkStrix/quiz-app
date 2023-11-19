@@ -3,6 +3,9 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import style from "@/styles/page-styles/home-page.module.css";
+import Button from "@/components/button/button";
+
 export default function Home() {
   const router = useRouter();
   const setActionQuizId = useStore((state) => state.setActionQuizId);
@@ -28,9 +31,20 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <h1>Welcome to the Quiz</h1>
-      <button onClick={handleStartQuiz}>Start Quiz</button>
+    <div className={style.container}>
+      <div className={style.logo}></div>
+      <div className={style.quizBannerContainer}>
+        <div className={style.quizBanner}>Quiz</div>
+        <div className={style.buttonContainer}>
+          <Button
+            className={style.startButton}
+            text="Start"
+            onClick={handleStartQuiz}
+          >
+            Start
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

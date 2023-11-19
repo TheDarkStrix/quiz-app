@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import useStore from "@/store/store";
 import { useRouter } from "next/router";
 import axios from "axios";
+import style from "@/styles/page-styles/quiz-page.module.css";
+import RoundDialProgress from "@/components/round-dial-progress/round-dial-progress";
+import CircularProgressBar from "@/components/round-dial-progress/round-dial-progress";
+import Image from "next/image";
 
 export default function Quiz() {
   const router = useRouter();
@@ -82,32 +86,74 @@ export default function Quiz() {
   const questionData = questions?.[currentQuestion] || [];
 
   return (
-    <div>
-      <h1>Quiz</h1>
-      {questionData && (
-        <div>
-          <p>{questionData.question}</p>
-          {questionData?.options?.map((option, index) => (
-            <button
-              style={
-                selectedOption.includes(option)
-                  ? { border: "1px solid red" }
-                  : undefined
-              }
-              key={index}
-              onClick={() => handleOptionSelect(option, index)}
-            >
-              {option}
-            </button>
-          ))}
+    // <div>
+    //   <h1>Quiz</h1>
+    //   {questionData && (
+    //     <div>
+    //       <p>{questionData.question}</p>
+    //       {questionData?.options?.map((option, index) => (
+    //         <button
+    //           style={
+    //             selectedOption.includes(option)
+    //               ? { border: "1px solid red" }
+    //               : undefined
+    //           }
+    //           key={index}
+    //           onClick={() => handleOptionSelect(option, index)}
+    //         >
+    //           {option}
+    //         </button>
+    //       ))}
+    //     </div>
+    //   )}
+    //   <button
+    //     onClick={handleAnswerSubmit}
+    //     disabled={selectedOption.length == 0}
+    //   >
+    //     {currentQuestion == totalQuestions - 1 ? "Submit" : "Next Question"}
+    //   </button>
+    // </div>
+    <div className={style.container}>
+      <div className={style.progressContainer}>
+        <Image
+          src="/background.svg"
+          alt="background"
+          layout="fill"
+          objectFit="cover"
+        />
+        <div className={style.progressWrapper}>
+          <CircularProgressBar progress={80} />
         </div>
-      )}
-      <button
-        onClick={handleAnswerSubmit}
-        disabled={selectedOption.length == 0}
-      >
-        {currentQuestion == totalQuestions - 1 ? "Submit" : "Next Question"}
-      </button>
+      </div>
+      <div className={style.mainWrapper}>
+        {questionData && (
+          <div>
+            <div className={style.question}>{questionData.question}</div>
+            {questionData?.options?.map((option, index) => (
+              <button
+                style={
+                  selectedOption.includes(option)
+                    ? { border: "1px solid red" }
+                    : undefined
+                }
+                key={index}
+                onClick={() => handleOptionSelect(option, index)}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className={style.footer}>
+        <button
+          className={style.button}
+          onClick={handleAnswerSubmit}
+          disabled={selectedOption.length == 0}
+        >
+          {currentQuestion == totalQuestions - 1 ? "Submit" : "Next Question"}
+        </button>
+      </div>
     </div>
   );
 }
