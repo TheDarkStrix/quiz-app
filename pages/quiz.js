@@ -20,6 +20,8 @@ export default function Quiz() {
   const [selectedOption, setSelectedOption] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  console.log("selected option", selectedOption, selectedOption.length == 0);
+
   const totalQuestions = questions.length;
 
   useEffect(() => {

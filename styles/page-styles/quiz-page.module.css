@@ -31,6 +31,7 @@
 .button:disabled {
   background-color: #999;
   color: black;
+  cursor: not-allowed !important;
 }
 
 .button:hover {
