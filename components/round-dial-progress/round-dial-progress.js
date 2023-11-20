@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import style from "./round-dial-progress.module.css";
 
 const CircularProgressBar = ({ progress, textComponent }) => {
-  console.log(progress);
   const normalizedProgress = Math.min(Math.max(progress, 0), 100);
   const radius = 50; // Radius of the circle
   const circumference = 2 * Math.PI * radius;

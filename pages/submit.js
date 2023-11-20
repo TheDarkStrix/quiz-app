@@ -26,7 +26,6 @@ export default function Submit() {
   useEffect(() => {
     const getScore = async () => {
       if (!quizId) {
-        console.log("No quiz ID available");
         return;
       }
       setLoading(true);
@@ -34,7 +33,7 @@ export default function Submit() {
         const response = await axios.post("/api/v1/get-score", {
           quizId: quizId,
         });
-        console.log("Score:", response.data);
+
         setScore(parseInt(response.data.score.split("")[0]));
         setTotal(parseInt(response.data.score.split("")[2]));
         setLoading(false);

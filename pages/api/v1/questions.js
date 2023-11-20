@@ -4,10 +4,7 @@ export default async function handler(req, res) {
   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
   let { data: questions, error } = await supabase.from("questions").select("*");
 
-  console.log("data", questions);
-
   if (error) {
-    console.log(error);
     return res.status(500).json({ error: error.message });
   }
 

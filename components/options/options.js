@@ -5,7 +5,6 @@ import style from "./options.module.css";
 Option.propTypes = {};
 
 function Option({ text, onClick, checked }) {
-  console.log("checked", checked);
   return (
     <div
       className={`${style.container} ${checked && style.checked}`}

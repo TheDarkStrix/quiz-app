@@ -18,7 +18,6 @@ export default function Home() {
     await axios
       .post("/api/v1/start-quiz")
       .then((response) => {
-        console.log("Quiz started:", response.data);
         setActionQuizId(response.data.quizId);
         setLoading(false);
         router.push("/quiz");
