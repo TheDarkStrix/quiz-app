@@ -33,10 +33,8 @@ export default async function handler(req, res) {
 
   let score = 0;
   quizSession.answers.forEach((answer) => {
-    
     const question = questions.find((q) => q.id === answer.questionId);
-    
-    );
+
     if (question && answer.selectedOption.includes(question.correct_answer)) {
       score += 1;
     }

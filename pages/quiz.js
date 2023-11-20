@@ -14,13 +14,11 @@ export default function Quiz() {
   const setQuestions = useStore((state) => state.setQuestions);
   const questions = useStore((state) => state.questions);
   const quizId = useStore((state) => state.activeQuizId);
-  
+
   const currentQuestion = useStore((state) => state.currentQuestion);
   const setCurrentQuestion = useStore((state) => state.setCurrentQuestion);
   const [selectedOption, setSelectedOption] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  
 
   const totalQuestions = questions.length;
 
@@ -63,19 +61,14 @@ export default function Quiz() {
       timeTaken: "time-taken-value",
     };
 
-    
-
     setLoading(true);
 
     await axios
       .post("/api/v1/submit-answer", payload)
       .then((response) => {
-        
-
         if (currentQuestion == totalQuestions - 1) {
           router.push("/submit");
         } else {
-          
           setSelectedOption([]);
           setCurrentQuestion(currentQuestion + 1);
         }
@@ -86,8 +79,6 @@ export default function Quiz() {
         setLoading(false);
       });
   };
-
-  
 
   const questionData = questions?.[currentQuestion] || [];
 
@@ -111,7 +102,6 @@ export default function Quiz() {
           objectFit="cover"
         />
         <div className={style.progressWrapper}>
-          { / questions.length) * 100}`)}
           <CircularProgressBar
             progress={`${parseInt(
               ((currentQuestion + 1) / questions.length) * 100
