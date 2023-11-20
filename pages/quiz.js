@@ -53,28 +53,25 @@ export default function Quiz() {
   };
 
   const handleAnswerSubmit = async () => {
-    // Prepare your data payload
     const payload = {
-      quizId: quizId, // Replace with your actual quiz ID
-      questionId: questions[currentQuestion]?.id, // Assuming you have question IDs
+      quizId: quizId,
+      questionId: questions[currentQuestion]?.id,
       selectedOption: selectedOption,
-      timeTaken: "time-taken-value", // Replace with actual time taken if you track it
+      timeTaken: "time-taken-value",
     };
 
     console.log("payload", payload);
 
-    // Submit the answer using Axios
     await axios
       .post("/api/v1/submit-answer", payload)
       .then((response) => {
         console.log("Answer submitted:", response.data);
 
-        // Navigate to the next question or to the submit page
         if (currentQuestion == totalQuestions - 1) {
           router.push("/submit");
         } else {
           console.log(currentQuestion + 1);
-          setSelectedOption([]); // Reset the selected options for the next question
+          setSelectedOption([]);
           setCurrentQuestion(currentQuestion + 1);
         }
       })
@@ -98,33 +95,6 @@ export default function Quiz() {
   };
 
   return (
-    // <div>
-    //   <h1>Quiz</h1>
-    //   {questionData && (
-    //     <div>
-    //       <p>{questionData.question}</p>
-    //       {questionData?.options?.map((option, index) => (
-    //         <button
-    //           style={
-    //             selectedOption.includes(option)
-    //               ? { border: "1px solid red" }
-    //               : undefined
-    //           }
-    //           key={index}
-    //           onClick={() => handleOptionSelect(option, index)}
-    //         >
-    //           {option}
-    //         </button>
-    //       ))}
-    //     </div>
-    //   )}
-    //   <button
-    //     onClick={handleAnswerSubmit}
-    //     disabled={selectedOption.length == 0}
-    //   >
-    //     {currentQuestion == totalQuestions - 1 ? "Submit" : "Next Question"}
-    //   </button>
-    // </div>
     <div className={`${style.container}`}>
       <div className={style.progressContainer}>
         <Image
@@ -137,7 +107,6 @@ export default function Quiz() {
           {console.log(`${((currentQuestion + 1) / questions.length) * 100}`)}
           <CircularProgressBar
             progress={`${((currentQuestion + 1) / questions.length) * 100}`}
-            // text={`${currentQuestion + 1} / ${questions.length}`}
             textComponent={textComponent()}
           />
         </div>
@@ -148,17 +117,6 @@ export default function Quiz() {
             <div className={style.question}>{questionData.question}</div>
             <div className={style.optionContainer}>
               {questionData?.options?.map((option, index) => (
-                // <button
-                //   style={
-                //     selectedOption.includes(option)
-                //       ? { border: "1px solid red" }
-                //       : undefined
-                //   }
-                //   key={index}
-                //   onClick={() => handleOptionSelect(option, index)}
-                // >
-                //   {option}
-                // </button>
                 <Option
                   text={option}
                   checked={selectedOption.includes(option)}
@@ -177,12 +135,10 @@ export default function Quiz() {
           disabled={selectedOption.length == 0}
           Icon={
             currentQuestion == totalQuestions - 1 ? null : (
-              <Image src="/arrow.svg" width={30} height={30} alt="arrow" />
+              <Image src="/arrow.svg" width={21} height={21} alt="arrow" />
             )
           }
-          text={
-            currentQuestion == totalQuestions - 1 ? "Submit" : "Next Question"
-          }
+          text={"Next"}
         />
       </div>
     </div>

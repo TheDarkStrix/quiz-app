@@ -15,6 +15,8 @@ const useStore = create((set) => ({
     set(() => ({
       currentQuestion,
     })),
+  resetAll: () =>
+    set(() => ({ questions: [], currentQuestion: 0, activeQuizId: null })),
 }));
 
 export default useStore;

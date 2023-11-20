@@ -1,0 +1,55 @@
+.progressSemiCircle {
+    position: relative;
+    display: inline-block;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .barOverflow {
+    /* Wraps the rotating .bar */
+    position: relative;
+    width: 180px;
+    height: 80px;
+    /* Half circle (overflow) */
+    margin-bottom: -14px;
+    /* bring the numbers up */
+    overflow: hidden;
+  }
+  
+  .barSemiCircle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    /* full circle! */
+    box-sizing: border-box;
+    background: linear-gradient(white, white) padding-box, linear-gradient(to right, #0bf, #262925) border-box;
+    border-radius: 50%;
+    border: 10px solid transparent;
+  }
+
+  .barOverflow1 {
+    /* Wraps the rotating .bar */
+    position: relative;
+    width: 180px;
+    height: 80px;
+    /* Half circle (overflow) */
+    margin-bottom: -14px;
+    /* bring the numbers up */
+    overflow: hidden;
+  }
+  
+  .barSemiCircle1 {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    /* full circle! */
+    box-sizing: border-box;
+    background: linear-gradient(white, white) padding-box, linear-gradient(to right, gray, gray) border-box;
+    border-radius: 50%;
+    border: 15px solid transparent;
+    z-index: 1;
+  }

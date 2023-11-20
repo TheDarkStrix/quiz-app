@@ -1,0 +1,117 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #af9cf3;
+  }
+  
+  .mainWrapper {
+    flex-grow: 1;
+    padding: 40px 20px 20px 20px;
+    background-color: white;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+  }
+  
+.footer {
+    background-color: white;
+    padding: 0 20px;
+  }
+  
+  .progressContainer {
+    height: 125px;
+    min-height: 125px;
+    position: relative;
+  }
+
+  .button {
+    border-radius: 80px;
+    background-color: #ff3b3f;
+    color: white;
+    font-weight: 900;
+    font-size: 4rem;
+    margin: 40px 0;
+    border: 0;
+    padding: 20px 0;
+  }
+  
+  .button:disabled {
+    background-color: #999;
+    color: black;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+  }
+
+  .resultText{
+    font-weight: 800;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .block {
+    border-radius: 20px;
+    background-color: #44B77B1A;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .inCorrectBlock {
+    border-radius: 20px;
+    background-color: #FF3B3F1A;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .count {
+    padding: 0 10px;
+    font-weight: 700;
+  }
+
+  .correct {
+    width: 20px;
+    height: 20px;
+    background-color: #44B77B;
+    border-radius: 50%;
+  }
+
+  .inCorrect{
+    width: 20px;
+    height: 20px;
+    background-color:  #FF3B3F;
+    border-radius: 50%;
+  }
+
+  @media (max-width: 768px) {
+    .button {
+      border-radius: 80px;
+      background-color: #ff3b3f;
+      color: white;
+      font-weight: 900;
+      font-size: 2rem;
+      margin: 40px 0;
+      border: 0;
+      padding: 20px 0;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .button {
+      border-radius: 40px;
+      background-color: #ff3b3f;
+      color: white;
+      font-weight: 900;
+      font-size: 1.2rem;
+      margin: 40px 0;
+      border: 0;
+      width: 100%;
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }  

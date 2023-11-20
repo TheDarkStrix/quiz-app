@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
+import style from "./button.module.css";
 
 const Button = ({ text, onClick, className, Icon }) => {
   return (
     <button onClick={onClick} className={className}>
       {text}
-      {Icon && <span className="icon-right">{Icon}</span>}
+      {Icon && <span className={style.iconRight}>{Icon}</span>}
     </button>
   );
 };
