@@ -8,6 +8,7 @@ import CircularProgressBar from "@/components/round-dial-progress/round-dial-pro
 import Image from "next/image";
 import Option from "@/components/options/options";
 import Button from "@/components/button/button";
+import Loading from "@/components/loading/loading";
 
 export default function Quiz() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function Quiz() {
   const setCurrentQuestion = useStore((state) => state.setCurrentQuestion);
   const setActionQuizId = useStore((state) => state.setActionQuizId);
   const [selectedOption, setSelectedOption] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const totalQuestions = questions.length;
 
@@ -28,12 +30,15 @@ export default function Quiz() {
       return;
     }
 
+    setLoading(true);
     axios
       .get("/api/v1/questions")
       .then((response) => {
         setQuestions(response.data);
+        setLoading(false);
       })
       .catch((error) => {
+        setLoading(false);
         console.error("There was an error fetching the questions:", error);
       });
   }, []);
@@ -62,6 +67,8 @@ export default function Quiz() {
 
     console.log("payload", payload);
 
+    setLoading(true);
+
     await axios
       .post("/api/v1/submit-answer", payload)
       .then((response) => {
@@ -74,9 +81,11 @@ export default function Quiz() {
           setSelectedOption([]);
           setCurrentQuestion(currentQuestion + 1);
         }
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error submitting answer:", error);
+        setLoading(false);
       });
   };
 
@@ -141,6 +150,7 @@ export default function Quiz() {
           text={"Next"}
         />
       </div>
+      <Loading isLoading={loading} />
     </div>
   );
 }

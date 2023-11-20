@@ -5,28 +5,28 @@ import { useRouter } from "next/router";
 
 import style from "@/styles/page-styles/home-page.module.css";
 import Button from "@/components/button/button";
+import { useState } from "react";
+import Loading from "@/components/loading/loading";
 
 export default function Home() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const setActionQuizId = useStore((state) => state.setActionQuizId);
   const startQuiz = useStore((state) => state.startQuiz);
 
   const handleStartQuiz = async () => {
-    // startQuiz();
+    setLoading(true);
     await axios
       .post("/api/v1/start-quiz")
       .then((response) => {
         console.log("Quiz started:", response.data);
-
-        // You can store the quiz ID or any other response data if needed
-        // For example, using local state or a global state manager like Zustand
-
-        // Navigate to the quiz page
         setActionQuizId(response.data.quizId);
+        setLoading(false);
         router.push("/quiz");
       })
       .catch((error) => {
         console.error("Error starting quiz:", error);
+        setLoading(false);
       });
   };
 
@@ -45,6 +45,7 @@ export default function Home() {
           </Button>
         </div>
       </div>
+      <Loading isLoading={loading} />
     </div>
   );
 }

@@ -4,6 +4,7 @@ const GaugeComponent = dynamic(() => import("react-gauge-component"), {
   ssr: false,
 });
 export const SpeedoProgress = ({ value }) => {
+  console.log("value", value);
   return (
     <GaugeComponent
       type="semicircle"
