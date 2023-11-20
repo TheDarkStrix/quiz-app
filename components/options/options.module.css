@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  border: 2.22px solid transparent;
+  padding: 60px 40px;
+  background-color: #f3f4fa;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border-radius: 20px;
+  font-size: 1.2rem;
+}
+
+.noCheckMark {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #e1e0e0;
+  display: block;
+  margin-right: 20px;
+}
+
+.checkmark {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #35d299;
+  color: white;
+  margin-right: 20px;
+}
+
+.checked {
+  border: 2.22px solid #35d299 !important;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    display: flex;
+    border: 1px solid transparent;
+    padding: 32px 20px;
+    background-color: #f3f4fa;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-radius: 20px;
+    margin: 10px 0;
+  }
+}

@@ -1,8 +1,10 @@
 // CircularProgressBar.js
 import React from "react";
 import PropTypes from "prop-types";
+import style from "./round-dial-progress.module.css";
 
-const CircularProgressBar = ({ progress }) => {
+const CircularProgressBar = ({ progress, textComponent }) => {
+  console.log(progress);
   const normalizedProgress = Math.min(Math.max(progress, 0), 100);
   const radius = 50; // Radius of the circle
   const circumference = 2 * Math.PI * radius;
@@ -10,7 +12,9 @@ const CircularProgressBar = ({ progress }) => {
     circumference - (normalizedProgress / 100) * circumference;
 
   return (
-    <div style={{ background: "white", borderRadius: "50%" }}>
+    <div
+      style={{ background: "white", borderRadius: "50%", position: "relative" }}
+    >
       <svg width="120" height="120" viewBox="0 0 120 120">
         <circle
           cx="60"
@@ -32,17 +36,8 @@ const CircularProgressBar = ({ progress }) => {
           transform="rotate(-90 60 60)"
           strokeLinecap="round"
         />
-        <text
-          x="60"
-          y="65"
-          fill="#333"
-          fontSize="20"
-          textAnchor="middle"
-          alignmentBaseline="middle"
-        >
-          {`${normalizedProgress}%`}
-        </text>
       </svg>
+      <div className={style.centerText}>{textComponent}</div>
     </div>
   );
 };

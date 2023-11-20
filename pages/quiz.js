@@ -6,6 +6,8 @@ import style from "@/styles/page-styles/quiz-page.module.css";
 import RoundDialProgress from "@/components/round-dial-progress/round-dial-progress";
 import CircularProgressBar from "@/components/round-dial-progress/round-dial-progress";
 import Image from "next/image";
+import Option from "@/components/options/options";
+import Button from "@/components/button/button";
 
 export default function Quiz() {
   const router = useRouter();
@@ -85,6 +87,16 @@ export default function Quiz() {
 
   const questionData = questions?.[currentQuestion] || [];
 
+  const textComponent = () => {
+    return (
+      <div>
+        <span className={style.currentQuestion}>{currentQuestion + 1}</span>
+        <span className={style.questionTotal}>/</span>
+        <span className={style.questionTotal}>{questions.length}</span>
+      </div>
+    );
+  };
+
   return (
     // <div>
     //   <h1>Quiz</h1>
@@ -113,7 +125,7 @@ export default function Quiz() {
     //     {currentQuestion == totalQuestions - 1 ? "Submit" : "Next Question"}
     //   </button>
     // </div>
-    <div className={style.container}>
+    <div className={`${style.container}`}>
       <div className={style.progressContainer}>
         <Image
           src="/background.svg"
@@ -122,37 +134,56 @@ export default function Quiz() {
           objectFit="cover"
         />
         <div className={style.progressWrapper}>
-          <CircularProgressBar progress={80} />
+          {console.log(`${((currentQuestion + 1) / questions.length) * 100}`)}
+          <CircularProgressBar
+            progress={`${((currentQuestion + 1) / questions.length) * 100}`}
+            // text={`${currentQuestion + 1} / ${questions.length}`}
+            textComponent={textComponent()}
+          />
         </div>
       </div>
       <div className={style.mainWrapper}>
         {questionData && (
           <div>
             <div className={style.question}>{questionData.question}</div>
-            {questionData?.options?.map((option, index) => (
-              <button
-                style={
-                  selectedOption.includes(option)
-                    ? { border: "1px solid red" }
-                    : undefined
-                }
-                key={index}
-                onClick={() => handleOptionSelect(option, index)}
-              >
-                {option}
-              </button>
-            ))}
+            <div className={style.optionContainer}>
+              {questionData?.options?.map((option, index) => (
+                // <button
+                //   style={
+                //     selectedOption.includes(option)
+                //       ? { border: "1px solid red" }
+                //       : undefined
+                //   }
+                //   key={index}
+                //   onClick={() => handleOptionSelect(option, index)}
+                // >
+                //   {option}
+                // </button>
+                <Option
+                  text={option}
+                  checked={selectedOption.includes(option)}
+                  key={index}
+                  onClick={() => handleOptionSelect(option, index)}
+                />
+              ))}
+            </div>
           </div>
         )}
       </div>
       <div className={style.footer}>
-        <button
+        <Button
           className={style.button}
           onClick={handleAnswerSubmit}
           disabled={selectedOption.length == 0}
-        >
-          {currentQuestion == totalQuestions - 1 ? "Submit" : "Next Question"}
-        </button>
+          Icon={
+            currentQuestion == totalQuestions - 1 ? null : (
+              <Image src="/arrow.svg" width={30} height={30} alt="arrow" />
+            )
+          }
+          text={
+            currentQuestion == totalQuestions - 1 ? "Submit" : "Next Question"
+          }
+        />
       </div>
     </div>
   );
