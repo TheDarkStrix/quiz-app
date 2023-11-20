@@ -16,6 +16,8 @@
 .footer {
     background-color: white;
     padding: 0 20px;
+    display: flex;
+    justify-content: center;
   }
   
   .progressContainer {
@@ -29,10 +31,11 @@
     background-color: #ff3b3f;
     color: white;
     font-weight: 900;
-    font-size: 4rem;
+    font-size: 2rem;
     margin: 40px 0;
     border: 0;
     padding: 20px 0;
+    width: 90%;
   }
   
   .button:disabled {
@@ -84,6 +87,14 @@
     height: 20px;
     background-color:  #FF3B3F;
     border-radius: 50%;
+  }
+
+  .meter {
+    width: 1200px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 
   @media (max-width: 768px) {

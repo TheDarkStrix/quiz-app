@@ -3,7 +3,6 @@ import useStore from "@/store/store";
 import { useRouter } from "next/router";
 import axios from "axios";
 import style from "@/styles/page-styles/quiz-page.module.css";
-import RoundDialProgress from "@/components/round-dial-progress/round-dial-progress";
 import CircularProgressBar from "@/components/round-dial-progress/round-dial-progress";
 import Image from "next/image";
 import Option from "@/components/options/options";
@@ -18,7 +17,6 @@ export default function Quiz() {
   console.log("quizId", quizId);
   const currentQuestion = useStore((state) => state.currentQuestion);
   const setCurrentQuestion = useStore((state) => state.setCurrentQuestion);
-  const setActionQuizId = useStore((state) => state.setActionQuizId);
   const [selectedOption, setSelectedOption] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -43,18 +41,16 @@ export default function Quiz() {
       });
   }, []);
 
-  const handleOptionSelect = (option, index) => {
+  const handleOptionSelect = (option) => {
     let currentSelectedOption = [...selectedOption];
-    if (currentSelectedOption.includes(index)) {
+    if (currentSelectedOption.includes(option)) {
       currentSelectedOption = currentSelectedOption.filter(
-        (item) => item !== index
+        (item) => item !== option
       );
     } else {
       currentSelectedOption.push(option);
     }
-
     setSelectedOption(currentSelectedOption);
-    console.log(index);
   };
 
   const handleAnswerSubmit = async () => {
@@ -115,7 +111,9 @@ export default function Quiz() {
         <div className={style.progressWrapper}>
           {console.log(`${((currentQuestion + 1) / questions.length) * 100}`)}
           <CircularProgressBar
-            progress={`${((currentQuestion + 1) / questions.length) * 100}`}
+            progress={`${parseInt(
+              ((currentQuestion + 1) / questions.length) * 100
+            )}`}
             textComponent={textComponent()}
           />
         </div>
@@ -124,6 +122,16 @@ export default function Quiz() {
         {questionData && (
           <div>
             <div className={style.question}>{questionData.question}</div>
+            {questionData.question_image && (
+              <div className={style.questionImage}>
+                <Image
+                  src={questionData.question_image}
+                  alt="question_image"
+                  width={500}
+                  height={500}
+                />
+              </div>
+            )}
             <div className={style.optionContainer}>
               {questionData?.options?.map((option, index) => (
                 <Option

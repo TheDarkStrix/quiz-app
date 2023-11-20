@@ -15,11 +15,9 @@ height: 100vh;
 .quizBanner{
     box-shadow: 0px 8px 8px 0px #0000001A;
     border-radius: 50%;
-    height: 432px;
-    width: 396px;
-    min-width: 396px;
-    min-height: 432px;
-    font-size: 80px;
+    height: 332px;
+    width: 332px;
+    font-size: 50px;
     font-weight: 800;
     color: #FF3B3C;
     display: flex;
@@ -34,20 +32,54 @@ height: 100vh;
 
 .buttonContainer{
     margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .startButton {
-    height: 128px;
     border-radius: 80px;
-    background-color: #FF3B3F;
+    background-color: #ff3b3f;
     color: white;
     font-weight: 900;
-    font-size: 4rem;
-   margin: 40px 0;
+    font-size: 2rem;
+    margin: 40px 0;
     border: 0;
-    min-width: 630px;
+    padding: 20px 0;
+    width: 90%;
 }
 
 .startButton:hover {
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .startButton {
+      border-radius: 80px;
+      background-color: #ff3b3f;
+      color: white;
+      font-weight: 900;
+      font-size: 2rem;
+      margin: 40px 0;
+      border: 0;
+      padding: 20px 0;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .startButton {
+      border-radius: 40px;
+      background-color: #ff3b3f;
+      color: white;
+      font-weight: 900;
+      font-size: 1.2rem;
+      margin: 40px 0;
+      border: 0;
+      width: 80%;
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  

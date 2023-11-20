@@ -1,13 +1,14 @@
 .container {
   display: flex;
   border: 2.22px solid transparent;
-  padding: 60px 40px;
+  padding: 40px 20px;
   background-color: #f3f4fa;
   display: flex;
   justify-content: left;
   align-items: center;
   border-radius: 20px;
   font-size: 1.2rem;
+  margin: 10px 0;
 }
 
 .noCheckMark {

@@ -16,6 +16,7 @@ export default async function handler(req, res) {
     id: q.id,
     question: q.question,
     options: q.options,
+    question_image: q?.question_image || null,
   }));
 
   res.status(200).json(questions);

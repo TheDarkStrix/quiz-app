@@ -67,7 +67,9 @@ export default function Submit() {
           </div>
         )} */}
 
-        <SpeedoProgress value={(score / total) * 100} />
+        <div className={style.meter}>
+          <SpeedoProgress value={(score / total) * 100} />
+        </div>
 
         <div className={style.block}>
           <div className={style.correct}></div>
@@ -85,12 +87,6 @@ export default function Submit() {
         <Button
           className={style.button}
           onClick={handleStartOver}
-          //   disabled={selectedOption.length == 0}
-          //   Icon={
-          //     currentQuestion == totalQuestions - 1 ? null : (
-          //       <Image src="/arrow.svg" width={21} height={21} alt="arrow" />
-          //     )
-          //   }
           text={"Start Again"}
         />
       </div>
